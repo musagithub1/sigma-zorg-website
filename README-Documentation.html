@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sigma Zorg Website - Technical Documentation</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6; 
+            color: #333; 
+            background: #f5f5f5;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        header { 
+            background: linear-gradient(135deg, #4CAF50 0%, #3B82F6 100%); 
+            color: white; 
+            padding: 60px 20px; 
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        header p { font-size: 1.2em; opacity: 0.9; }
+        .badge { 
+            display: inline-block; 
+            background: rgba(255,255,255,0.2); 
+            padding: 5px 15px; 
+            border-radius: 20px; 
+            margin: 10px 5px; 
+            font-size: 0.9em;
+        }
+        .content { background: white; padding: 40px; margin: 20px 0; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h2 { 
+            color: #4CAF50; 
+            margin: 30px 0 15px; 
+            padding-bottom: 10px; 
+            border-bottom: 3px solid #4CAF50;
+            font-size: 2em;
+        }
+        h3 { 
+            color: #3B82F6; 
+            margin: 25px 0 10px; 
+            font-size: 1.5em;
+        }
+        h4 { 
+            color: #666; 
+            margin: 20px 0 10px; 
+            font-size: 1.2em;
+        }
+        .feature-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 20px; 
+            margin: 20px 0; 
+        }
+        .feature-card { 
+            background: #f9f9f9; 
+            padding: 20px; 
+            border-radius: 8px; 
+            border-left: 4px solid #4CAF50;
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover { transform: translateX(5px); }
+        .feature-card h4 { margin-top: 0; color: #4CAF50; }
+        .code-block { 
+            background: #2d2d2d; 
+            color: #f8f8f2; 
+            padding: 20px; 
+            border-radius: 8px; 
+            overflow-x: auto; 
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        .highlight { background: #fff3cd; padding: 2px 6px; border-radius: 3px; }
+        .success { color: #4CAF50; font-weight: bold; }
+        .warning { color: #ff9800; font-weight: bold; }
+        .info-box { 
+            background: #e3f2fd; 
+            border-left: 4px solid #2196F3; 
+            padding: 15px; 
+            margin: 15px 0; 
+            border-radius: 4px;
+        }
+        .warning-box { 
+            background: #fff3e0; 
+            border-left: 4px solid #ff9800; 
+            padding: 15px; 
+            margin: 15px 0; 
+            border-radius: 4px;
+        }
+        .success-box { 
+            background: #e8f5e9; 
+            border-left: 4px solid #4CAF50; 
+            padding: 15px; 
+            margin: 15px 0; 
+            border-radius: 4px;
+        }
+        ul, ol { margin: 15px 0 15px 30px; }
+        li { margin: 8px 0; }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 20px 0; 
+            background: white;
+        }
+        th, td { 
+            padding: 12px; 
+            text-align: left; 
+            border-bottom: 1px solid #ddd; 
+        }
+        th { 
+            background: #4CAF50; 
+            color: white; 
+            font-weight: bold;
+        }
+        tr:hover { background: #f5f5f5; }
+        .toc { 
+            background: #f9f9f9; 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin: 20px 0;
+        }
+        .toc ul { list-style: none; }
+        .toc a { 
+            color: #3B82F6; 
+            text-decoration: none; 
+            display: block;
+            padding: 5px 0;
+        }
+        .toc a:hover { color: #4CAF50; text-decoration: underline; }
+        footer { 
+            background: #2d2d2d; 
+            color: white; 
+            text-align: center; 
+            padding: 30px 20px; 
+            margin-top: 40px;
+        }
+        .emoji { font-size: 1.2em; }
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8em; }
+            .content { padding: 20px; }
+            .feature-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🏥 Sigma Zorg Website</h1>
+        <p>Complete Technical Documentation</p>
+        <div>
+            <span class="badge">Version 2.0</span>
+            <span class="badge">Single File Architecture</span>
+            <span class="badge">Production Ready</span>
+            <span class="badge">Mobile Responsive</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Table of Contents -->
+        <div class="content toc">
+            <h2>📑 Table of Contents</h2>
+            <ul>
+                <li><a href="#overview">1. Project Overview</a></li>
+                <li><a href="#features">2. Key Features</a></li>
+                <li><a href="#structure">3. File Structure</a></li>
+                <li><a href="#sections">4. Website Sections</a></li>
+                <li><a href="#technical">5. Technical Stack</a></li>
+                <li><a href="#deployment">6. Deployment Guide</a></li>
+                <li><a href="#customization">7. Customization Guide</a></li>
+                <li><a href="#mobile">8. Mobile Optimization</a></li>
+                <li><a href="#seo">9. SEO & Performance</a></li>
+                <li><a href="#support">10. Support & Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- 1. Project Overview -->
+        <div class="content" id="overview">
+            <h2>1. <span class="emoji">📋</span> Project Overview</h2>
+            
+            <p><strong>Sigma Zorg</strong> is a comprehensive home care and youth guidance organization serving the Amsterdam and Flevoland regions. This website showcases their complete service portfolio with a focus on accessibility, user experience, and clear communication.</p>
+
+            <div class="success-box">
+                <strong>✅ What's New in Version 2.0:</strong>
+                <ul>
+                    <li>Complete Youth Care (Jongeren) section with 6 specialized services</li>
+                    <li>Enhanced navigation with separate Thuiszorg and Jongeren sections</li>
+                    <li>Modern gradient designs for visual distinction</li>
+                    <li>Improved mobile responsiveness</li>
+                    <li>Updated contact methods and regional coverage</li>
+                </ul>
+            </div>
+
+            <h3>Target Audience</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>👴 Elderly & Families</h4>
+                    <p>Families seeking home care for elderly members who want to remain independent.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>👨‍👩‍👧 Youth & Parents</h4>
+                    <p>Parents and guardians seeking guidance for youth in Amsterdam & Flevoland.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>❤️ Informal Caregivers</h4>
+                    <p>Family members providing care who need professional support and respite.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🏥 Healthcare Professionals</h4>
+                    <p>Medical professionals seeking reliable care partnerships.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Key Features -->
+        <div class="content" id="features">
+            <h2>2. <span class="emoji">✨</span> Key Features</h2>
+
+            <h3>Home Care Services (Thuiszorg)</h3>
+            <ol>
+                <li><strong>Huishoudelijke hulp</strong> - Household cleaning and maintenance</li>
+                <li><strong>Persoonlijke verzorging</strong> - Personal care and hygiene support</li>
+                <li><strong>Wijkverpleging</strong> - District nursing and medical care</li>
+                <li><strong>Verpleging</strong> - Advanced nursing care</li>
+                <li><strong>Ambulante begeleiding</strong> - Ambulatory support for adults</li>
+                <li><strong>Mantelzorg ondersteuning</strong> - Informal caregiver support</li>
+                <li><strong>Palliatieve & terminale zorg</strong> - Palliative and end-of-life care</li>
+                <li><strong>Nachtzorg</strong> - Night care services</li>
+                <li><strong>Oproepbare zorg</strong> - On-call emergency care</li>
+            </ol>
+
+            <h3>Youth Care Services (Jongeren) - NEW!</h3>
+            <ol>
+                <li><strong>Ambulante begeleiding</strong> - Practical and emotional youth support (Jeugdwet & Wmo)</li>
+                <li><strong>Schoolbegeleiding</strong> - School guidance and learning support</li>
+                <li><strong>Toekomst- en werktrajecten</strong> - Career guidance and work preparation</li>
+                <li><strong>Gezinsbegeleiding</strong> - Family guidance and support</li>
+                <li><strong>Digitale begeleiding</strong> - Digital support tools (AI-Hub in development)</li>
+                <li><strong>Regionale focus</strong> - Specialized service for Amsterdam & Flevoland</li>
+            </ol>
+
+            <div class="info-box">
+                <strong>📍 Service Areas:</strong> Amsterdam and surrounding areas, plus the entire Flevoland region.
+            </div>
+
+            <h3>User Experience Features</h3>
+            <ul>
+                <li>📱 <strong>Mobile-First Design</strong> - Fully responsive across all devices</li>
+                <li>🎨 <strong>Visual Storytelling</strong> - Customer journey timeline</li>
+                <li>⚡ <strong>Fast Loading</strong> - Optimized single-file architecture</li>
+                <li>♿ <strong>Accessibility</strong> - Semantic HTML and clear navigation</li>
+                <li>💬 <strong>Easy Contact</strong> - Floating WhatsApp button + multiple contact methods</li>
+                <li>🎭 <strong>Smooth Animations</strong> - AOS library for elegant scrolling effects</li>
+            </ul>
+        </div>
+
+        <!-- 3. File Structure -->
+        <div class="content" id="structure">
+            <h2>3. <span class="emoji">📁</span> File Structure</h2>
+
+            <div class="code-block">
+sigma-zorg/
+│
+├── index.html                      # Main website file (complete)
+├── README.md                       # Project documentation (Markdown)
+└── README-Documentation.html       # This technical documentation
+            </div>
+
+            <div class="success-box">
+                <strong>✅ Single File Architecture</strong>
+                <p>Everything is contained in <code>index.html</code> for maximum simplicity:</p>
+                <ul>
+                    <li>All HTML structure</li>
+                    <li>Embedded CSS styles</li>
+                    <li>JavaScript functionality</li>
+                    <li>External resources loaded via CDN</li>
+                </ul>
+            </div>
+
+            <h3>External Dependencies (CDN)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Resource</th>
+                        <th>Version</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tailwind CSS</td>
+                        <td>2.2.19</td>
+                        <td>Utility-first CSS framework</td>
+                    </tr>
+                    <tr>
+                        <td>Font Awesome</td>
+                        <td>6.4.0</td>
+                        <td>Icons library</td>
+                    </tr>
+                    <tr>
+                        <td>Google Fonts (Inter)</td>
+                        <td>Latest</td>
+                        <td>Typography</td>
+                    </tr>
+                    <tr>
+                        <td>AOS Library</td>
+                        <td>2.3.4</td>
+                        <td>Scroll animations</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 4. Website Sections -->
+        <div class="content" id="sections">
+            <h2>4. <span class="emoji">🗂️</span> Website Sections</h2>
+
+            <h3>Section Breakdown</h3>
+
+            <h4>1. Navigation Bar</h4>
+            <ul>
+                <li>Sticky navigation that stays visible while scrolling</li>
+                <li>Links to: Thuiszorg, Jongeren, Over Ons, Contact</li>
+                <li>WhatsApp quick-action button</li>
+                <li>Mobile hamburger menu for small screens</li>
+            </ul>
+
+            <h4>2. Hero Section</h4>
+            <ul>
+                <li>Eye-catching gradient background (green to blue)</li>
+                <li>Emotional headline: "Thuis is waar het ❤️ is"</li>
+                <li>Service category cards (Thuiszorg & Jongerenzorg)</li>
+                <li>Dual CTAs: WhatsApp contact + Learn more</li>
+                <li>Animated floating elements for visual interest</li>
+            </ul>
+
+            <h4>3. Customer Journey (Verhaal)</h4>
+            <ul>
+                <li>Visual timeline with 5 stages</li>
+                <li>Tells the story from first contact to long-term care</li>
+                <li>Alternating left-right design for visual flow</li>
+                <li>Personal, emotional copywriting</li>
+            </ul>
+
+            <h4>4. Youth Care Section (Jongeren) - NEW!</h4>
+            <ul>
+                <li>Vibrant red-to-blue gradient design</li>
+                <li>4-step approach visualization</li>
+                <li>6 service cards with icons and descriptions</li>
+                <li>Regional focus highlighting (Amsterdam & Flevoland)</li>
+                <li>"Why Choose Us" section with 6 benefits</li>
+                <li>Dedicated CTAs for youth services</li>
+            </ul>
+
+            <h4>5. Home Care Section (Thuiszorg)</h4>
+            <ul>
+                <li>9 comprehensive service cards</li>
+                <li>Each with image, description, bullet points, and CTA</li>
+                <li>Hover effects for interactivity</li>
+                <li>Service-specific WhatsApp links</li>
+            </ul>
+
+            <h4>6. About Us (Over Ons)</h4>
+            <ul>
+                <li>6 key differentiators with icons</li>
+                <li>Focus on: Personal care, 24/7 availability, collaboration</li>
+                <li>Regional expertise highlighted</li>
+                <li>Insurance partnerships mentioned</li>
+            </ul>
+
+            <h4>7. Customer Rating</h4>
+            <ul>
+                <li>8.3/10 average rating display</li>
+                <li>90% recommendation rate</li>
+                <li>Social proof section</li>
+            </ul>
+
+            <h4>8. Contact Section</h4>
+            <ul>
+                <li>WhatsApp priority positioning</li>
+                <li>Phone, email, office address</li>
+                <li>Inclusive messaging (for all backgrounds)</li>
+                <li>Multiple contact methods for accessibility</li>
+            </ul>
+
+            <h4>9. Footer</h4>
+            <ul>
+                <li>4-column layout (about, thuiszorg, jongeren, contact)</li>
+                <li>Complete service listing</li>
+                <li>Copyright and company info</li>
+            </ul>
+
+            <h4>10. Floating WhatsApp Button</h4>
+            <ul>
+                <li>Fixed position (bottom right)</li>
+                <li>Always visible while scrolling</li>
+                <li>Pulse animation to attract attention</li>
+                <li>Direct link to WhatsApp chat</li>
+            </ul>
+        </div>
+
+        <!-- 5. Technical Stack -->
+        <div class="content" id="technical">
+            <h2>5. <span class="emoji">⚙️</span> Technical Stack</h2>
+
+            <h3>Core Technologies</h3>
+            <div class="code-block">
+HTML5        - Semantic markup, accessibility features
+CSS3         - Custom styles, Flexbox, Grid, animations
+JavaScript   - Vanilla JS (no frameworks), event handling
+Tailwind CSS - Utility-first CSS framework (v2.2.19)
+            </div>
+
+            <h3>Libraries & Frameworks</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Library</th>
+                        <th>Usage</th>
+                        <th>Benefits</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Tailwind CSS</strong></td>
+                        <td>Layout, spacing, responsive design</td>
+                        <td>Rapid development, consistent styling</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Font Awesome</strong></td>
+                        <td>Icons throughout the site</td>
+                        <td>Professional icons, no custom graphics needed</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Google Fonts</strong></td>
+                        <td>Inter font family</td>
+                        <td>Modern, readable typography</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AOS (Animate On Scroll)</strong></td>
+                        <td>Scroll-triggered animations</td>
+                        <td>Enhanced user engagement</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Custom JavaScript Features</h3>
+            <ul>
+                <li><strong>Mobile Menu Toggle</strong> - Hamburger menu functionality</li>
+                <li><strong>Smooth Scrolling</strong> - Animated navigation to sections</li>
+                <li><strong>Navbar Scroll Effect</strong> - Background change on scroll</li>
+                <li><strong>Card Hover Effects</strong> - Interactive service cards</li>
+                <li><strong>AOS Initialization</strong> - Animation configuration</li>
+            </ul>
+
+            <div class="code-block">
+// Example: Smooth Scrolling Implementation
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+            </div>
+        </div>
+
+        <!-- 6. Deployment Guide -->
+        <div class="content" id="deployment">
+            <h2>6. <span class="emoji">🚀</span> Deployment Guide</h2>
+
+            <h3>Option 1: Netlify (Recommended for Beginners)</h3>
+            <ol>
+                <li>Go to <a href="https://www.netlify.com" target="_blank">netlify.com</a></li>
+                <li>Drag and drop <code>index.html</code> into the deployment area</li>
+                <li>Your site goes live in seconds!</li>
+                <li>Get a free HTTPS URL (e.g., sigma-zorg.netlify.app)</li>
+            </ol>
+
+            <div class="success-box">
+                <strong>✅ Benefits:</strong> Free hosting, automatic HTTPS, CDN distribution, instant updates
+            </div>
+
+            <h3>Option 2: Vercel</h3>
+            <ol>
+                <li>Create account at <a href="https://vercel.com" target="_blank">vercel.com</a></li>
+                <li>Click "New Project"</li>
+                <li>Import from GitHub or upload files</li>
+                <li>Deploy automatically</li>
+            </ol>
+
+            <h3>Option 3: GitHub Pages</h3>
+            <ol>
+                <li>Create a GitHub repository</li>
+                <li>Upload <code>index.html</code> to the repository</li>
+                <li>Go to Settings → Pages</li>
+                <li>Select branch and save</li>
+                <li>Access at: https://yourusername.github.io/repo-name/</li>
+            </ol>
+
+            <h3>Option 4: Traditional Web Hosting</h3>
+            <ol>
+                <li>Connect to your hosting via FTP (FileZilla, etc.)</li>
+                <li>Upload <code>index.html</code> to <code>public_html</code> or <code>www</code> folder</li>
+                <li>Rename to <code>index.html</code> if needed</li>
+                <li>Access via your domain name</li>
+            </ol>
+
+            <div class="warning-box">
+                <strong>⚠️ Important:</strong> Make sure <code>index.html</code> is in the root directory of your web server for the domain to work correctly.
+            </div>
+
+            <h3>Custom Domain Setup</h3>
+            <p>To use <code>www.sigmazorg.nl</code>:</p>
+            <ol>
+                <li>Purchase domain from registrar (GoDaddy, Namecheap, etc.)</li>
+                <li>Point DNS A record to hosting IP</li>
+                <li>Add CNAME record for www subdomain</li>
+                <li>Enable HTTPS/SSL certificate</li>
+                <li>Wait 24-48 hours for DNS propagation</li>
+            </ol>
+        </div>
+
+        <!-- 7. Customization Guide -->
+        <div class="content" id="customization">
+            <h2>7. <span class="emoji">🎨</span> Customization Guide</h2>
+
+            <h3>Updating Contact Information</h3>
+            <p>Search and replace these values in <code>index.html</code>:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Current Value</th>
+                        <th>Search For</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>WhatsApp</td>
+                        <td>+31 6 86350771</td>
+                        <td><code>31686350771</code></td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td>020 - 334 28 87</td>
+                        <td><code>020 - 334 28 87</code></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>info@sigmazorg.nl</td>
+                        <td><code>info@sigmazorg.nl</code></td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>Den Brielstraat 6</td>
+                        <td><code>Den Brielstraat 6</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Changing Colors</h3>
+            <p>Find the <code>&lt;style&gt;</code> section and modify these CSS classes:</p>
+
+            <div class="code-block">
+/* Home Care Gradient (Green to Blue) */
+.hero-gradient { 
+    background: linear-gradient(135deg, #4CAF50 0%, #3B82F6 100%); 
+}
+
+/* Youth Care Gradient (Red to Turquoise) */
+.youth-gradient { 
+    background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%); 
+}
+
+/* WhatsApp Button */
+.whatsapp-btn { 
+    background-color: #25D366; 
+}
+.whatsapp-btn:hover { 
+    background-color: #128C7E; 
+}
+            </div>
+
+            <h3>Adding a New Service</h3>
+            <ol>
+                <li>Find the services grid section</li>
+                <li>Copy an existing service card <code>&lt;div class="service-card..."&gt;</code></li>
+                <li>Paste below the last service card</li>
+                <li>Update these elements:</li>
+            </ol>
+
+            <div class="code-block">
+&lt;div class="service-card bg-white rounded-2xl overflow-hidden shadow-lg"&gt;
+    &lt;div class="h-48 bg-cover bg-center" 
+         style="background-image: url('YOUR_IMAGE_URL')"&gt;&lt;/div&gt;
+    &lt;div class="p-6"&gt;
+        &lt;h3&gt;🆕 Your New Service&lt;/h3&gt;
+        &lt;p&gt;Service description here...&lt;/p&gt;
+        &lt;ul&gt;
+            &lt;li&gt;✓ Feature 1&lt;/li&gt;
+            &lt;li&gt;✓ Feature 2&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;a href="https://wa.me/31686350771?text=Info%20about%20service"&gt;
+            Meer informatie →
+        &lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+            </div>
+
+            <h3>Updating Text Content</h3>
+            <p>All text is directly in the HTML. Use your code editor's search function to find and update:</p>
+            <ul>
+                <li>Headlines and taglines</li>
+                <li>Service descriptions</li>
+                <li>Bullet point lists</li>
+                <li>Call-to-action text</li>
+                <li>Footer information</li>
+            </ul>
+        </div>
+
+        <!-- 8. Mobile Optimization -->
+        <div class="content" id="mobile">
+            <h2>8. <span class="emoji">📱</span> Mobile Optimization</h2>
+
+            <h3>Responsive Breakpoints</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Device</th>
+                        <th>Width</th>
+                        <th>Layout</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mobile Portrait</td>
+                        <td>&lt; 640px</td>
+                        <td>Single column, stacked elements</td>
+                    </tr>
+                    <tr>
+                        <td>Mobile Landscape / Tablet</td>
+                        <td>640px - 1024px</td>
+                        <td>2 columns for services</td>
+                    </tr>
+                    <tr>
+                        <td>Desktop</td>
+                        <td>&gt; 1024px</td>
+                        <td>3 columns, full navigation</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Mobile-Specific Features</h3>
+            <ul>
+                <li>✅ <strong>Hamburger Menu</strong> - Collapsible navigation for small screens</li>
+                <li>✅ <strong>Touch-Friendly Buttons</strong> - Large tap targets (min 44px)</li>
+                <li>✅ <strong>Responsive Typography</strong> - Font sizes scale with viewport</li>
+                <li>✅ <strong>Optimized Images</strong> - Proper sizing and lazy loading consideration</li>
+                <li>✅ <strong>Mobile-First WhatsApp</strong> - Opens WhatsApp app on mobile</li>
+                <li>✅ <strong>Swipe-Friendly</strong> - No horizontal scroll, easy vertical scrolling</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>📊 Mobile Usage:</strong> Over 60% of home care website visits come from mobile devices. This site is optimized for mobile-first experience.
+            </div>
+
+            <h3>Testing on Mobile</h3>
+            <ol>
+                <li><strong>Chrome DevTools</strong>: F12 → Toggle device toolbar</li>
+                <li><strong>Real Devices</strong>: Test on actual phones and tablets</li>
+                <li><strong>Online Tools</strong>: Use responsivedesignchecker.com</li>
+                <li><strong>Different Browsers</strong>: Safari (iOS), Chrome (Android)</li>
+            </ol>
+        </div>
+
+        <!-- 9. SEO & Performance -->
+        <div class="content" id="seo">
+            <h2>9. <span class="emoji">🔍</span> SEO & Performance</h2>
+
+            <h3>SEO Features Implemented</h3>
+            <ul>
+                <li>✅ Semantic HTML5 (header, nav, section, footer)</li>
+                <li>✅ Meta description and title tags</li>
+                <li>✅ Proper heading hierarchy (H1 → H2 → H3 → H4)</li>
+                <li>✅ Alt text for images (where applicable)</li>
+                <li>✅ Internal linking structure</li>
+                <li>✅ Mobile-friendly (Google's main ranking factor)</li>
+                <li>✅ Fast loading time (single file, CDN resources)</li>
+                <li>✅ HTTPS ready</li>
+            </ul>
+
+            <h3>Performance Optimization</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Implementation</th>
+                        <th>Benefit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>File Size</td>
+                        <td>Single HTML file (~60KB)</td>
+                        <td>Fast initial load</td>
+                    </tr>
+                    <tr>
+                        <td>External Resources</td>
+                        <td>CDN-hosted libraries</td>
+                        <td>Cached globally, fast delivery</td>
+                    </tr>
+                    <tr>
+                        <td>JavaScript</td>
+                        <td>Minimal vanilla JS</td>
+                        <td>No heavy framework overhead</td>
+                    </tr>
+                    <tr>
+                        <td>Images</td>
+                        <td>External hosting</td>
+                        <td>Reduced server load</td>
+                    </tr>
+                    <tr>
+                        <td>CSS</td>
+                        <td>Embedded + Tailwind CDN</td>
+                        <td>No additional HTTP requests</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Further SEO Improvements (Recommendations)</h3>
+            <ol>
+                <li><strong>Add Schema Markup</strong> - LocalBusiness schema for better search results</li>
+                <li><strong>Create XML Sitemap</strong> - Help search engines crawl the site</li>
+                <li><strong>Google My Business</strong> - Claim and optimize business listing</li>
+                <li><strong>Add Blog Section</strong> - Regular content for better rankings</li>
+                <li><strong>Optimize Images</strong> - Download and compress to WebP format</li>
+                <li><strong>Add Reviews</strong> - Integrate Google Reviews or testimonials</li>
+                <li><strong>Local SEO</strong> - Focus on "thuiszorg Amsterdam" keywords</li>
+            </ol>
+
+            <div class="warning-box">
+                <strong>⚠️ Image Optimization:</strong> Current images are hotlinked from external sources. For production, download and host them locally for better control and SEO.
+            </div>
+        </div>
+
+        <!-- 10. Support & Contact -->
+        <div class="content" id="support">
+            <h2>10. <span class="emoji">📞</span> Support & Contact</h2>
+
+            <h3>Sigma Zorg Contact Information</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>💬 WhatsApp</h4>
+                    <p><strong>+31 6 86350771</strong></p>
+                    <p>Fastest response time, available for quick questions</p>
+                </div>
+                <div class="feature-card">
+                    <h4>📞 Phone</h4>
+                    <p><strong>020 - 334 28 87</strong></p>
+                    <p>Thuiszorg information line</p>
+                </div>
+                <div class="feature-card">
+                    <h4>📧 Email</h4>
+                    <p><strong>info@sigmazorg.nl</strong></p>
+                    <p>For detailed inquiries and formal communication</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🏢 Office</h4>
+                    <p><strong>Den Brielstraat 6</strong><br>1055 RV Amsterdam<br>Netherlands</p>
+                </div>
+            </div>
+
+            <h3>For Technical Support</h3>
+            <p>If you need help with the website:</p>
+            <ul>
+                <li>Check this documentation first</li>
+                <li>Review the README.md file</li>
+                <li>Contact your web developer or IT support</li>
+                <li>Common issues usually relate to hosting configuration</li>
+            </ul>
+
+            <h3>Browser Compatibility</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Browser</th>
+                        <th>Minimum Version</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Chrome</td>
+                        <td>90+</td>
+                        <td><span class="success">✅ Fully Supported</span></td>
+                    </tr>
+                    <tr>
+                        <td>Firefox</td>
+                        <td>88+</td>
+                        <td><span class="success">✅ Fully Supported</span></td>
+                    </tr>
+                    <tr>
+                        <td>Safari</td>
+                        <td>14+</td>
+                        <td><span class="success">✅ Fully Supported</span></td>
+                    </tr>
+                    <tr>
+                        <td>Edge</td>
+                        <td>90+</td>
+                        <td><span class="success">✅ Fully Supported</span></td>
+                    </tr>
+                    <tr>
+                        <td>Mobile Safari (iOS)</td>
+                        <td>14+</td>
+                        <td><span class="success">✅ Fully Supported</span></td>
+                    </tr>
+                    <tr>
+                        <td>Chrome Mobile (Android)</td>
+                        <td>90+</td>
+                        <td><span class="success">✅ Fully Supported</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Quick Troubleshooting</h3>
+            
+            <h4>Issue: WhatsApp links not working</h4>
+            <p><strong>Solution:</strong> Ensure you're testing on a device with WhatsApp installed. Desktop browsers will open WhatsApp Web.</p>
+
+            <h4>Issue: Images not loading</h4>
+            <p><strong>Solution:</strong> Check internet connection. Images are hosted externally and require internet access.</p>
+
+            <h4>Issue: Animations not working</h4>
+            <p><strong>Solution:</strong> Ensure JavaScript is enabled. Check browser console for errors.</p>
+
+            <h4>Issue: Mobile menu not opening</h4>
+            <p><strong>Solution:</strong> Clear browser cache. Check JavaScript is enabled.</p>
+
+            <div class="success-box">
+                <h4>✅ Best Practices for Updates</h4>
+                <ul>
+                    <li>Always keep a backup of the original <code>index.html</code></li>
+                    <li>Test changes locally before uploading to live site</li>
+                    <li>Use a code editor with syntax highlighting (VS Code, Sublime Text)</li>
+                    <li>Clear browser cache after updating to see changes</li>
+                    <li>Test on multiple devices and browsers</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Final Notes -->
+        <div class="content">
+            <h2><span class="emoji">🎉</span> Conclusion</h2>
+            
+            <p>This website represents a complete, production-ready solution for Sigma Zorg's online presence. It combines:</p>
+            
+            <ul>
+                <li>✅ <strong>Comprehensive service portfolio</strong> (both home care and youth care)</li>
+                <li>✅ <strong>Modern, responsive design</strong> that works on all devices</li>
+                <li>✅ <strong>Easy-to-use contact methods</strong> with WhatsApp integration</li>
+                <li>✅ <strong>Performance optimized</strong> single-file architecture</li>
+                <li>✅ <strong>SEO-friendly</strong> structure for better visibility</li>
+                <li>✅ <strong>Accessible and inclusive</strong> for all users</li>
+            </ul>
+
+            <div class="success-box">
+                <h3>🚀 Ready to Launch!</h3>
+                <p>Your website is complete and ready for deployment. Simply upload <code>index.html</code> to your web hosting, and you're live!</p>
+                <p>Need help? Contact Sigma Zorg at <strong>+31 6 86350771</strong> or <strong>info@sigmazorg.nl</strong></p>
+            </div>
+
+            <div class="info-box">
+                <h3>📈 Future Enhancements</h3>
+                <p>Consider these additions for continued growth:</p>
+                <ul>
+                    <li>Online appointment booking system</li>
+                    <li>Client portal for care management</li>
+                    <li>Blog for SEO and content marketing</li>
+                    <li>Video testimonials from satisfied clients</li>
+                    <li>Multi-language support (English, Turkish, Arabic)</li>
+                    <li>Live chat integration</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <h3>🏥 Sigma Zorg Website - Technical Documentation</h3>
+        <p>Version 2.0 | 2025 | Built with ❤️ for Sigma Zorg</p>
+        <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">
+            Zorg die voelt als thuis - Care that feels like home
+        </p>
+    </footer>
+</body>
+</html>
