@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sigma Zorg Amsterdam - Thuiszorg & Jongerenbegeleiding met Menselijke Warmte</title>
-    <meta name="description" content="Sigma Zorg levert persoonlijke thuiszorg en jongerenbegeleiding in Amsterdam & Flevoland. Van huishoudelijke hulp tot verpleging en ambulante begeleiding voor jongeren. Bel +31 6 86350771">
+    <title>Sigma Zorg - Jongerenbegeleiding & Thuiszorg in Amsterdam & Flevoland</title>
+    <meta name="description" content="Sigma Zorg levert persoonlijke jongerenbegeleiding en thuiszorg in Amsterdam & Flevoland. Begeleiding voor jongeren, huishoudelijke hulp tot verpleging. Bel 06 - 86350771">
     
     <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
@@ -19,9 +19,13 @@
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .hero-gradient { background: linear-gradient(135deg, #4CAF50 0%, #3B82F6 100%); }
+        body { 
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .hero-gradient { background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 50%, #4CAF50 100%); }
         .youth-gradient { background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%); }
+        .home-gradient { background: linear-gradient(135deg, #4CAF50 0%, #3B82F6 100%); }
         .pulse-gentle { animation: pulse-gentle 2s infinite; }
         @keyframes pulse-gentle {
             0%, 100% { transform: scale(1); }
@@ -39,7 +43,7 @@
             top: 0;
             bottom: 0;
             width: 2px;
-            background: linear-gradient(to bottom, #4CAF50, #3B82F6);
+            background: linear-gradient(to bottom, #FF6B6B, #4ECDC4);
         }
         .timeline-item { position: relative; padding-left: 60px; margin-bottom: 40px; }
         .timeline-dot {
@@ -49,9 +53,9 @@
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            background: #4CAF50;
+            background: #FF6B6B;
             border: 3px solid white;
-            box-shadow: 0 2px 10px rgba(76, 175, 80, 0.3);
+            box-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
         }
         .youth-card {
             background: linear-gradient(135deg, rgba(255,107,107,0.1) 0%, rgba(78,205,196,0.1) 100%);
@@ -63,12 +67,33 @@
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(255,107,107,0.2);
         }
+        .review-card {
+            background: white;
+            border-left: 4px solid #FFD700;
+            transition: all 0.3s ease;
+        }
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
         .nav-sticky {
             transition: all 0.3s ease;
         }
         .nav-scrolled {
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .star-rating {
+            color: #FFD700;
+            font-size: 1.5rem;
         }
     </style>
 </head>
@@ -79,14 +104,15 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <h1 class="text-2xl font-bold text-green-600">Sigma Zorg</h1>
+                    <h1 class="text-2xl font-bold text-red-500">Sigma Zorg</h1>
                     <span class="ml-2 text-sm text-gray-600">Amsterdam & Flevoland</span>
                 </div>
                 <div class="hidden md:flex items-center space-x-6">
+                    <a href="#jongeren" class="text-gray-700 hover:text-red-500 transition font-semibold">Jongerenzorg</a>
                     <a href="#thuiszorg" class="text-gray-700 hover:text-green-600 transition">Thuiszorg</a>
-                    <a href="#jongeren" class="text-gray-700 hover:text-red-500 transition">Jongeren</a>
-                    <a href="#over-ons" class="text-gray-700 hover:text-green-600 transition">Over Ons</a>
-                    <a href="#contact" class="text-gray-700 hover:text-green-600 transition">Contact</a>
+                    <a href="#reviews" class="text-gray-700 hover:text-yellow-600 transition">Reviews</a>
+                    <a href="#over-ons" class="text-gray-700 hover:text-blue-600 transition">Over Ons</a>
+                    <a href="#contact" class="text-gray-700 hover:text-purple-600 transition">Contact</a>
                     <a href="https://wa.me/31686350771" class="whatsapp-btn text-white px-4 py-2 rounded-full transition hover:shadow-lg">
                         <i class="fab fa-whatsapp mr-2"></i>WhatsApp
                     </a>
@@ -102,10 +128,11 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
             <div class="px-4 py-4 space-y-3">
+                <a href="#jongeren" class="block text-gray-700 hover:text-red-500 font-semibold">Jongerenzorg</a>
                 <a href="#thuiszorg" class="block text-gray-700 hover:text-green-600">Thuiszorg</a>
-                <a href="#jongeren" class="block text-gray-700 hover:text-red-500">Jongeren</a>
-                <a href="#over-ons" class="block text-gray-700 hover:text-green-600">Over Ons</a>
-                <a href="#contact" class="block text-gray-700 hover:text-green-600">Contact</a>
+                <a href="#reviews" class="block text-gray-700 hover:text-yellow-600">Reviews</a>
+                <a href="#over-ons" class="block text-gray-700 hover:text-blue-600">Over Ons</a>
+                <a href="#contact" class="block text-gray-700 hover:text-purple-600">Contact</a>
                 <a href="https://wa.me/31686350771" class="whatsapp-btn text-white px-4 py-2 rounded-full text-center block">
                     <i class="fab fa-whatsapp mr-2"></i>WhatsApp
                 </a>
@@ -117,151 +144,115 @@
     <section class="hero-gradient min-h-screen flex items-center justify-center text-white relative overflow-hidden pt-16">
         <div class="absolute inset-0 bg-black opacity-20"></div>
         <div class="relative z-10 max-w-4xl mx-auto text-center px-4" data-aos="fade-up">
+            <div class="inline-block bg-white bg-opacity-20 backdrop-blur-lg px-6 py-2 rounded-full text-sm font-bold mb-6">
+                🌟 Jongerenbegeleiding & Thuiszorg in Amsterdam & Flevoland
+            </div>
             <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                Thuis is waar het ❤️ is
+                Groei begint bij vertrouwen ❤️
             </h1>
             <p class="text-xl md:text-2xl mb-8 text-gray-100 max-w-3xl mx-auto leading-relaxed">
-                Wij begrijpen dat thuis meer is dan een plek. Het is waar uw verhalen leven, 
-                uw herinneringen groeien, en waar u zich het veiligst voelt. Sigma Zorg helpt u 
-                om daar te blijven, met zorg die voelt als een warme omhelzing.
+                Bij Sigma Zorg bieden we meer dan alleen zorg - we bieden perspectief, stabiliteit en toekomst. 
+                Voor jongeren die een stap vooruit willen zetten, en voor gezinnen die thuis willen blijven.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="https://wa.me/31686350771?text=Hallo%20Sigma%20Zorg%2C%20ik%20wil%20graag%20informatie%20over%20thuiszorg" 
+                <a href="https://wa.me/31686350771?text=Hallo%20Sigma%20Zorg%2C%20ik%20wil%20graag%20informatie" 
                    class="whatsapp-btn px-8 py-4 rounded-full text-lg font-semibold transition hover:shadow-xl pulse-gentle">
-                    <i class="fab fa-whatsapp mr-3"></i>Start uw zorgverhaal
+                    <i class="fab fa-whatsapp mr-3"></i>Start uw verhaal
                 </a>
-                <a href="#verhaal" class="border-2 border-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-green-600 transition">
-                    Ontdek onze aanpak
+                <a href="#jongeren" class="border-2 border-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-red-500 transition">
+                    Ontdek onze diensten
                 </a>
             </div>
             
-            <!-- New: Service Categories -->
+            <!-- Service Categories -->
             <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                <a href="#jongeren" class="bg-white bg-opacity-20 backdrop-blur-lg p-6 rounded-2xl hover:bg-opacity-30 transition group">
+                    <i class="fas fa-graduation-cap text-4xl mb-3 group-hover:scale-110 transition"></i>
+                    <h3 class="text-xl font-bold mb-2">Jongerenbegeleiding</h3>
+                    <p class="text-sm">Voor jongeren in Amsterdam & Flevoland</p>
+                </a>
                 <a href="#thuiszorg" class="bg-white bg-opacity-20 backdrop-blur-lg p-6 rounded-2xl hover:bg-opacity-30 transition group">
                     <i class="fas fa-home text-4xl mb-3 group-hover:scale-110 transition"></i>
                     <h3 class="text-xl font-bold mb-2">Thuiszorg</h3>
                     <p class="text-sm">Voor ouderen en volwassenen</p>
                 </a>
-                <a href="#jongeren" class="bg-white bg-opacity-20 backdrop-blur-lg p-6 rounded-2xl hover:bg-opacity-30 transition group">
-                    <i class="fas fa-graduation-cap text-4xl mb-3 group-hover:scale-110 transition"></i>
-                    <h3 class="text-xl font-bold mb-2">Jongerenzorg</h3>
-                    <p class="text-sm">Begeleiding voor jongeren</p>
-                </a>
             </div>
         </div>
         
         <!-- Floating elements -->
-        <div class="absolute top-20 left-10 w-20 h-20 bg-white opacity-10 rounded-full animate-pulse"></div>
-        <div class="absolute bottom-20 right-10 w-32 h-32 bg-white opacity-5 rounded-full animate-pulse"></div>
-        <div class="absolute top-1/2 right-20 w-16 h-16 bg-white opacity-10 rounded-full animate-bounce"></div>
+        <div class="absolute top-20 left-10 w-20 h-20 bg-white opacity-10 rounded-full floating-element"></div>
+        <div class="absolute bottom-20 right-10 w-32 h-32 bg-white opacity-5 rounded-full floating-element" style="animation-delay: 1s;"></div>
+        <div class="absolute top-1/2 right-20 w-16 h-16 bg-white opacity-10 rounded-full floating-element" style="animation-delay: 2s;"></div>
     </section>
 
-    <!-- Customer Journey Story -->
-    <section id="verhaal" class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-                    ❤️ Uw verhaal begint hier
-                </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Elke dag schrijven wij samen met u een nieuw hoofdstuk. Van het eerste contact 
-                    tot jarenlange vertrouwde zorg - wij lopen met u mee op uw pad naar comfort thuis.
-                </p>
-            </div>
-
-            <div class="story-timeline max-w-4xl mx-auto">
-                <div class="timeline-item" data-aos="fade-right">
-                    <div class="timeline-dot"></div>
-                    <div class="bg-gray-50 p-8 rounded-2xl">
-                        <h3 class="text-2xl font-bold text-green-600 mb-4">📞 Het begin: Uw verhaal delen</h3>
-                        <p class="text-gray-700 text-lg leading-relaxed">
-                            Het begint met een gesprek. Misschien belt u ons omdat mama niet meer zo 
-                            goed kan lopen, of omdat papa's medicijnen verwarrend worden. Wij luisteren 
-                            zonder oordeel en begrijpen dat elke situatie uniek is.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="timeline-item" data-aos="fade-left">
-                    <div class="timeline-dot"></div>
-                    <div class="bg-gray-50 p-8 rounded-2xl">
-                        <h3 class="text-2xl font-bold text-blue-600 mb-4">☕ Kennismaking: We komen bij u langs</h3>
-                        <p class="text-gray-700 text-lg leading-relaxed">
-                            Onze zorgcoördinator komt bij u thuis - daar waar u zich prettig voelt. 
-                            We drinken een kopje koffie, bekijken samen wat u nog zelf kunt en waar 
-                            u hulp bij zou willen. Geen haast, geen druk.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="timeline-item" data-aos="fade-right">
-                    <div class="timeline-dot"></div>
-                    <div class="bg-gray-50 p-8 rounded-2xl">
-                        <h3 class="text-2xl font-bold text-green-600 mb-4">📋 Op maat: Uw persoonlijke zorgplan</h3>
-                        <p class="text-gray-700 text-lg leading-relaxed">
-                            Samen stellen we een zorgplan op dat bij ú past. Misschien heeft u alleen 
-                            hulp nodig bij het douchen, of juist bij alles. Wij passen ons aan uw 
-                            ritme en wensen aan.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="timeline-item" data-aos="fade-left">
-                    <div class="timeline-dot"></div>
-                    <div class="bg-gray-50 p-8 rounded-2xl">
-                        <h3 class="text-2xl font-bold text-blue-600 mb-4">👥 Dagelijkse zorg: Uw vaste team</h3>
-                        <p class="text-gray-700 text-lg leading-relaxed">
-                            Onze zorgverleners worden uw vertrouwde gezichten. Dezelfde mensen die 
-                            uw verhalen kennen, uw voorkeuren onthouden, en die merken als iets 
-                            anders is dan normaal. Echte menselijke connectie.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="timeline-item" data-aos="fade-right">
-                    <div class="timeline-dot"></div>
-                    <div class="bg-gray-50 p-8 rounded-2xl">
-                        <h3 class="text-2xl font-bold text-green-600 mb-4">🏡 Groeiende vertrouwen: Voor altijd thuis</h3>
-                        <p class="text-gray-700 text-lg leading-relaxed">
-                            Maanden en jaren later bent u nog steeds thuis. Uw kinderen zijn gerustgesteld, 
-                            u voelt zich veilig, en wij zijn er - of u nu gewoon een praatje wilt maken 
-                            of meer zorg nodig heeft.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-12" data-aos="fade-up">
-                <a href="https://wa.me/31686350771?text=Hallo%20Sigma%20Zorg%2C%20ik%20wil%20mijn%20verhaal%20delen" 
-                   class="whatsapp-btn text-white px-8 py-4 rounded-full text-lg font-semibold transition hover:shadow-xl">
-                    <i class="fab fa-whatsapp mr-3"></i>Begin uw verhaal
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- NEW: Youth Care Section (Jongeren) -->
+    <!-- NEW: Youth Guidance for Parents Section (A/B Text) -->
     <section id="jongeren" class="py-20 bg-gradient-to-br from-red-50 via-pink-50 to-blue-50">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-16" data-aos="fade-up">
                 <div class="inline-block bg-gradient-to-r from-red-500 to-blue-500 text-white px-6 py-2 rounded-full text-sm font-semibold mb-4">
-                    🌟 NIEUW: Jongerenzorg
+                    🎯 ONZE HOOFDFOCUS: Jongerenbegeleiding
                 </div>
                 <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-                    Sigma Zorg Jongeren – Groei begint bij vertrouwen
+                    Voor ouders: Uw kind verdient de beste kans
                 </h2>
-                <p class="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
-                    Bij Sigma Zorg geloven we dat <strong>elke jongere de kans verdient om te groeien</strong> – 
-                    ongeacht achtergrond, tegenslagen of omstandigheden. Wij begeleiden jongeren in 
-                    <strong>Amsterdam en Flevoland</strong> op weg naar zelfstandigheid, stabiliteit en toekomstperspectief.
-                </p>
+                <div class="max-w-4xl mx-auto text-left bg-white rounded-3xl shadow-xl p-8 md:p-12">
+                    <p class="text-xl text-gray-700 mb-6 leading-relaxed">
+                        Als ouder wilt u het beste voor uw kind. Maar soms is het moeilijk om alleen de juiste weg te vinden. 
+                        Misschien zit uw zoon of dochter niet lekker in zijn of haar vel, heeft moeite op school, 
+                        of worstelt met motivatie en perspectief.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        <strong class="text-red-600">Bij Sigma Zorg begrijpen we dat.</strong> Wij bieden <strong>ambulante jongerenbegeleiding</strong> 
+                        die verder gaat dan alleen "afvinken" - wij bouwen een vertrouwensband met uw kind, 
+                        luisteren zonder oordeel, en werken samen aan concrete stappen richting een betere toekomst.
+                    </p>
+                    <div class="bg-gradient-to-r from-red-50 to-blue-50 rounded-2xl p-6 mb-6">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">💪 Wat wij doen voor uw kind:</h3>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 text-xl mr-3 mt-1"></i>
+                                <span><strong>Persoonlijke begeleiding:</strong> Individuele sessies thuis, op school, of in de buurt</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 text-xl mr-3 mt-1"></i>
+                                <span><strong>Praktische ondersteuning:</strong> Bij schoolwerk, stages, of het vinden van werk</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 text-xl mr-3 mt-1"></i>
+                                <span><strong>Emotionele steun:</strong> Een vertrouwenspersoon die écht luistert en begrijpt</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 text-xl mr-3 mt-1"></i>
+                                <span><strong>Gezinsondersteuning:</strong> Wij betrekken u als ouder en werken samen</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 text-xl mr-3 mt-1"></i>
+                                <span><strong>Toekomstgericht:</strong> Focus op zelfstandigheid, zelfredzaamheid en groei</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Onze begeleiders zijn geen vreemden - ze worden vertrouwde gezichten die uw kind helpen 
+                        om weer vertrouwen te krijgen in zichzelf en de toekomst. Of het nu gaat om motivatie voor school, 
+                        het verbeteren van sociale vaardigheden, of het vinden van een passende opleiding of baan: 
+                        wij zijn er voor de lange termijn.
+                    </p>
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-lg">
+                        <p class="text-gray-700 font-semibold">
+                            <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                            <strong>Belangrijk voor ouders:</strong> Sigma Zorg werkt volgens de Jeugdwet en Wmo. 
+                            Dat betekent dat de kosten vaak volledig vergoed worden via uw gemeente. 
+                            Wij helpen u graag met het aanvraagproces.
+                        </p>
+                    </div>
+                </div>
             </div>
 
             <!-- Youth Approach -->
             <div class="mb-16" data-aos="fade-up">
                 <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
                     <div class="youth-gradient p-8 text-white text-center">
-                        <h3 class="text-3xl font-bold mb-4">💡 Onze Aanpak</h3>
+                        <h3 class="text-3xl font-bold mb-4">💡 Onze 4-stappen Aanpak</h3>
                         <p class="text-lg">Persoonlijk, herstelgericht en gericht op duurzame verandering</p>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-8">
@@ -269,28 +260,28 @@
                             <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
                                 <i class="fas fa-ear-listen text-3xl text-red-500"></i>
                             </div>
-                            <h4 class="font-bold text-lg mb-2">Luisteren & Begrijpen</h4>
+                            <h4 class="font-bold text-lg mb-2">1. Luisteren & Begrijpen</h4>
                             <p class="text-gray-600 text-sm">Eerst het verhaal achter het gedrag</p>
                         </div>
                         <div class="text-center" data-aos="fade-up" data-aos-delay="200">
                             <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                                 <i class="fas fa-tasks text-3xl text-blue-500"></i>
                             </div>
-                            <h4 class="font-bold text-lg mb-2">Plan op Maat</h4>
+                            <h4 class="font-bold text-lg mb-2">2. Plan op Maat</h4>
                             <p class="text-gray-600 text-sm">Samen doelen stellen die echt haalbaar zijn</p>
                         </div>
                         <div class="text-center" data-aos="fade-up" data-aos-delay="300">
                             <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                                 <i class="fas fa-running text-3xl text-green-500"></i>
                             </div>
-                            <h4 class="font-bold text-lg mb-2">Begeleiding in Actie</h4>
+                            <h4 class="font-bold text-lg mb-2">3. Begeleiding in Actie</h4>
                             <p class="text-gray-600 text-sm">Individuele begeleiding thuis, op school of in de wijk</p>
                         </div>
                         <div class="text-center" data-aos="fade-up" data-aos-delay="400">
                             <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                                 <i class="fas fa-chart-line text-3xl text-purple-500"></i>
                             </div>
-                            <h4 class="font-bold text-lg mb-2">Evalueren & Doorgroeien</h4>
+                            <h4 class="font-bold text-lg mb-2">4. Evalueren & Doorgroeien</h4>
                             <p class="text-gray-600 text-sm">Reflectie, bijsturing en succes vieren</p>
                         </div>
                     </div>
@@ -394,7 +385,7 @@
                             Wij opereren in Amsterdam en Flevoland met persoonlijke aandacht en 
                             kennis van de lokale situatie.
                         </p>
-                        <div class="flex gap-2">
+                        <div class="flex gap-2 flex-wrap">
                             <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-semibold">Amsterdam</span>
                             <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">Flevoland</span>
                         </div>
@@ -405,7 +396,7 @@
             <!-- Why Choose Us for Youth -->
             <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12" data-aos="fade-up">
                 <h3 class="text-3xl font-bold text-center text-gray-800 mb-10">
-                    🌟 Waarom Sigma Zorg Jongeren?
+                    🌟 Waarom Kiezen Ouders voor Sigma Zorg?
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="flex items-start">
@@ -475,11 +466,157 @@
                        class="whatsapp-btn text-white px-8 py-4 rounded-full text-lg font-semibold transition hover:shadow-xl inline-flex items-center justify-center">
                         <i class="fab fa-whatsapp mr-3"></i>WhatsApp voor Jongeren
                     </a>
-                    <a href="tel:+31686350771" 
+                    <a href="tel:0686350771" 
                        class="bg-gradient-to-r from-red-500 to-blue-500 text-white px-8 py-4 rounded-full text-lg font-semibold transition hover:shadow-xl inline-flex items-center justify-center">
-                        <i class="fas fa-phone mr-3"></i>Bel direct: +31 6 86350771
+                        <i class="fas fa-phone mr-3"></i>Bel: 06 - 86350771
                     </a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Reviews Section -->
+    <section id="reviews" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="inline-block bg-yellow-100 text-yellow-800 px-6 py-2 rounded-full text-sm font-semibold mb-4">
+                    ⭐ Reviews van Echte Mensen
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+                    Wat Onze Cliënten Zeggen
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Wij zijn trots op de impact die we maken in het leven van jongeren en gezinnen. 
+                    Lees wat onze cliënten over ons te zeggen hebben.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Review 1 - Youth -->
+                <div class="review-card p-6 rounded-2xl shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="star-rating mb-3">⭐⭐⭐⭐⭐</div>
+                    <p class="text-gray-700 mb-4 italic">
+                        "Sigma Zorg heeft mijn zoon echt geholpen om weer structuur te vinden. 
+                        Hij voelt zich eindelijk begrepen en heeft weer vertrouwen in de toekomst."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-red-400 to-pink-400 rounded-full flex items-center justify-center text-white font-bold mr-3">
+                            M
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-800">Maria van D.</p>
+                            <p class="text-sm text-gray-500">Moeder van cliënt - Amsterdam</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 - Youth Client -->
+                <div class="review-card p-6 rounded-2xl shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="star-rating mb-3">⭐⭐⭐⭐⭐</div>
+                    <p class="text-gray-700 mb-4 italic">
+                        "Mijn begeleider van Sigma Zorg luistert écht naar mij. Ik heb het gevoel dat ik iets kan bereiken. 
+                        Voor het eerst in lange tijd."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-full flex items-center justify-center text-white font-bold mr-3">
+                            J
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-800">Jamal, 17 jaar</p>
+                            <p class="text-sm text-gray-500">Jongere cliënt - Almere</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 - Home Care -->
+                <div class="review-card p-6 rounded-2xl shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                    <div class="star-rating mb-3">⭐⭐⭐⭐⭐</div>
+                    <p class="text-gray-700 mb-4 italic">
+                        "De thuiszorg van Sigma is fantastisch. Dezelfde verpleegkundige komt elke week, 
+                        ze kent mijn vader en zijn verhalen. Dat is echte zorg."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-400 rounded-full flex items-center justify-center text-white font-bold mr-3">
+                            S
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-800">Sophie K.</p>
+                            <p class="text-sm text-gray-500">Dochter van cliënt - Amsterdam</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 4 - Parent -->
+                <div class="review-card p-6 rounded-2xl shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="star-rating mb-3">⭐⭐⭐⭐⭐</div>
+                    <p class="text-gray-700 mb-4 italic">
+                        "Wij waren onze dochter kwijt aan haar problemen. Sigma Zorg heeft haar teruggebracht. 
+                        Nu zit ze weer op school en heeft ze plannen voor de toekomst."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-indigo-400 rounded-full flex items-center justify-center text-white font-bold mr-3">
+                            A
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-800">Ahmed & Fatima</p>
+                            <p class="text-sm text-gray-500">Ouders van cliënt - Flevoland</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 5 - Home Care Senior -->
+                <div class="review-card p-6 rounded-2xl shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="star-rating mb-3">⭐⭐⭐⭐⭐</div>
+                    <p class="text-gray-700 mb-4 italic">
+                        "Ik ben 82 jaar en wil graag thuis blijven wonen. Dankzij Sigma Zorg kan dat. 
+                        Ze helpen me met alles en zijn altijd vriendelijk."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full flex items-center justify-center text-white font-bold mr-3">
+                            H
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-800">Henk B.</p>
+                            <p class="text-sm text-gray-500">Thuiszorg cliënt - Amsterdam</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 6 - Youth Success -->
+                <div class="review-card p-6 rounded-2xl shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                    <div class="star-rating mb-3">⭐⭐⭐⭐⭐</div>
+                    <p class="text-gray-700 mb-4 italic">
+                        "Zonder Sigma Zorg had ik mijn stageplek nooit gevonden. Ze hebben me geholpen 
+                        met solliciteren en gaven me het vertrouwen dat ik nodig had."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-pink-400 to-rose-400 rounded-full flex items-center justify-center text-white font-bold mr-3">
+                            L
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-800">Lisa, 19 jaar</p>
+                            <p class="text-sm text-gray-500">Jongere cliënt - Amsterdam</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rating Summary -->
+            <div class="mt-16 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-3xl p-8 md:p-12 text-center" data-aos="fade-up">
+                <div class="flex items-center justify-center mb-6 flex-wrap gap-4">
+                    <div class="text-6xl font-bold text-yellow-600">4.8</div>
+                    <div class="text-left">
+                        <div class="star-rating text-3xl mb-2">⭐⭐⭐⭐⭐</div>
+                        <p class="text-gray-600 font-semibold">Gemiddelde beoordeling</p>
+                    </div>
+                </div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-4">
+                    "94% van onze cliënten beveelt Sigma Zorg aan"
+                </h3>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Dit zijn niet alleen cijfers voor ons - het zijn verhalen van mensen die zich 
+                    veilig, gehoord en gewaardeerd voelen. Dat is waar we elke dag voor werken.
+                </p>
             </div>
         </div>
     </section>
@@ -488,6 +625,9 @@
     <section id="thuiszorg" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-16" data-aos="fade-up">
+                <div class="inline-block bg-green-100 text-green-800 px-6 py-2 rounded-full text-sm font-semibold mb-4">
+                    🏠 Professionele Thuiszorg
+                </div>
                 <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
                     Onze Complete Thuiszorg Dienstverlening
                 </h2>
@@ -506,8 +646,7 @@
                         <h3 class="text-xl font-bold text-gray-800 mb-3">🧹 Huishoudelijke Hulp</h3>
                         <p class="text-gray-600 mb-4">
                             Uw huis schoon en netjes houden wordt zwaarder? Wij helpen met stofzuigen, 
-                            dweilen, badkamer schoonmaken, was en strijk. Alles zodat u kunt focussen 
-                            op wat echt belangrijk is.
+                            dweilen, badkamer schoonmaken, was en strijk.
                         </p>
                         <ul class="text-sm text-gray-600 mb-4 space-y-1">
                             <li>✓ Stoffen en stofzuigen</li>
@@ -528,8 +667,8 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-gray-800 mb-3">🚿 Persoonlijke Verzorging</h3>
                         <p class="text-gray-600 mb-4">
-                            Douchen, aankleden, of sokken aantrekken wordt moeilijker? Onze verzorgenden 
-                            helpen u met waardigheid en respect, zodat u zich fris en verzorgd voelt.
+                            Onze verzorgenden helpen u met waardigheid en respect bij douchen, 
+                            aankleden en persoonlijke verzorging.
                         </p>
                         <ul class="text-sm text-gray-600 mb-4 space-y-1">
                             <li>✓ Hulp bij douchen en wassen</li>
@@ -550,8 +689,8 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-gray-800 mb-3">💊 Wijkverpleging</h3>
                         <p class="text-gray-600 mb-4">
-                            Medische zorg thuis door opgeleide wijkverpleegkundigen. Van medicijnen 
-                            toedienen tot wondzorg - professionele zorg in uw vertrouwde omgeving.
+                            Medische zorg thuis door opgeleide wijkverpleegkundigen. 
+                            Van medicijnen toedienen tot wondzorg.
                         </p>
                         <ul class="text-sm text-gray-600 mb-4 space-y-1">
                             <li>✓ Medicijnen toedienen en injecties</li>
@@ -572,8 +711,8 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-gray-800 mb-3">🏥 Verpleging</h3>
                         <p class="text-gray-600 mb-4">
-                            Intensievere medische zorg voor complexere situaties. Onze verpleegkundigen 
-                            brengen ziekenhuiskwaliteit naar uw huis voor optimale zorg en comfort.
+                            Intensievere medische zorg voor complexere situaties. 
+                            Onze verpleegkundigen brengen ziekenhuiskwaliteit naar uw huis.
                         </p>
                         <ul class="text-sm text-gray-600 mb-4 space-y-1">
                             <li>✓ Intensieve verpleegkundige zorg</li>
@@ -594,8 +733,8 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-gray-800 mb-3">🤝 Ambulante Begeleiding</h3>
                         <p class="text-gray-600 mb-4">
-                            Ondersteuning bij het dagelijks leven voor mensen met een beperking, 
-                            dementie, of die gewoon wat extra hulp kunnen gebruiken bij beslissingen en taken.
+                            Ondersteuning bij het dagelijks leven voor mensen met een beperking 
+                            of die extra hulp kunnen gebruiken.
                         </p>
                         <ul class="text-sm text-gray-600 mb-4 space-y-1">
                             <li>✓ Hulp bij dagelijkse beslissingen</li>
@@ -619,7 +758,7 @@
                         <h3 class="text-xl font-bold text-gray-800 mb-3">❤️ Mantelzorg Ondersteuning</h3>
                         <p class="text-gray-600 mb-4">
                             Voor de helden die voor hun dierbaren zorgen. Wij ondersteunen mantelzorgers 
-                            zodat zij ook tijd hebben voor zichzelf, terwijl hun naaste optimale zorg krijgt.
+                            zodat zij ook tijd hebben voor zichzelf.
                         </p>
                         <ul class="text-sm text-gray-600 mb-4 space-y-1">
                             <li>✓ Tijdelijke overname van zorgtaken</li>
@@ -643,7 +782,7 @@
                         <h3 class="text-xl font-bold text-gray-800 mb-3">🕊️ Palliatieve & Terminale Zorg</h3>
                         <p class="text-gray-600 mb-4">
                             In de laatste levensfase verdient iedereen waardigheid, comfort en liefde. 
-                            Wij bieden specialistische zorg zodat u thuis kunt zijn bij uw dierbaren.
+                            Wij bieden specialistische zorg.
                         </p>
                         <ul class="text-sm text-gray-600 mb-4 space-y-1">
                             <li>✓ Pijnbestrijding en comfort</li>
@@ -666,8 +805,8 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-gray-800 mb-3">🌙 Nachtzorg</h3>
                         <p class="text-gray-600 mb-4">
-                            Rustgevende nachten met professionele zorg binnen handbereik. Kies tussen 
-                            een waakdienst (actieve bewaking) of slaapdienst (zorg op afroep).
+                            Rustgevende nachten met professionele zorg binnen handbereik. 
+                            Kies tussen waakdienst of slaapdienst.
                         </p>
                         <ul class="text-sm text-gray-600 mb-4 space-y-1">
                             <li>✓ Waakdienst (actieve begeleiding)</li>
@@ -691,7 +830,7 @@
                         <h3 class="text-xl font-bold text-gray-800 mb-3">📞 Oproepbare Zorg</h3>
                         <p class="text-gray-600 mb-4">
                             Onverwachte situaties gebeuren. Met onze oproepbare zorg bent u verzekerd 
-                            van snelle, professionele hulp wanneer u het nodig heeft - dag en nacht.
+                            van snelle hulp wanneer u het nodig heeft.
                         </p>
                         <ul class="text-sm text-gray-600 mb-4 space-y-1">
                             <li>✓ 24/7 bereikbaar voor noodgevallen</li>
@@ -724,7 +863,7 @@
         <div class="max-w-6xl mx-auto px-4">
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-                    Waarom 90% van onze cliënten ons aanbeveelt
+                    Waarom 94% van onze cliënten ons aanbeveelt
                 </h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     Het is niet alleen onze expertise die het verschil maakt - 
@@ -740,7 +879,7 @@
                     <h3 class="text-xl font-bold text-gray-800 mb-3">Kleinschalig & Persoonlijk</h3>
                     <p class="text-gray-600">
                         Wij werken met kleine teams zodat u altijd dezelfde vertrouwde gezichten ziet. 
-                        Geen vreemden aan de deur, maar mensen die uw verhaal kennen.
+                        Geen vreemden aan de deur.
                     </p>
                 </div>
 
@@ -750,8 +889,7 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-3">24/7 Bereikbaar</h3>
                     <p class="text-gray-600">
-                        Of het nu 3 uur 's nachts is of vroeg in de ochtend - wij zijn er wanneer u ons nodig heeft. 
-                        Veiligheid en geruststelling, dag en nacht.
+                        Of het nu 3 uur 's nachts is of vroeg in de ochtend - wij zijn er wanneer u ons nodig heeft.
                     </p>
                 </div>
 
@@ -762,7 +900,7 @@
                     <h3 class="text-xl font-bold text-gray-800 mb-3">Zorg met Aandacht</h3>
                     <p class="text-gray-600">
                         We nemen de tijd voor u. Geen haast, geen stress. Uw comfort en waardigheid 
-                        staan altijd voorop in alles wat we doen.
+                        staan altijd voorop.
                     </p>
                 </div>
 
@@ -773,7 +911,7 @@
                     <h3 class="text-xl font-bold text-gray-800 mb-3">Samenwerking</h3>
                     <p class="text-gray-600">
                         Wij werken nauw samen met uw huisarts, specialisten en andere zorgverleners. 
-                        Eén team rondom u voor de beste zorg.
+                        Eén team rondom u.
                     </p>
                 </div>
 
@@ -783,8 +921,8 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-3">Amsterdam & Flevoland</h3>
                     <p class="text-gray-600">
-                        Wij kennen Amsterdam als onze broekzak en bedienen ook Flevoland. 
-                        Overal leveren wij persoonlijke zorg in uw eigen buurt.
+                        Wij kennen de regio en bedienen Amsterdam en Flevoland. 
+                        Persoonlijke zorg in uw eigen buurt.
                     </p>
                 </div>
 
@@ -794,33 +932,10 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-3">Voorkeursaanbieder</h3>
                     <p class="text-gray-600">
-                        Wij zijn voorkeursaanbieder van Zilveren Kruis en hebben contracten met alle 
-                        zorgverzekeraars. Uw zorg wordt volledig vergoed.
+                        Wij hebben contracten met alle zorgverzekeraars. Uw zorg wordt volledig vergoed.
                     </p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Customer Rating Section -->
-    <section class="py-16 bg-gradient-to-r from-green-50 to-blue-50">
-        <div class="max-w-4xl mx-auto text-center px-4" data-aos="fade-up">
-            <div class="flex items-center justify-center mb-6">
-                <div class="text-6xl font-bold text-green-600 mr-4">8.3</div>
-                <div>
-                    <div class="flex text-yellow-400 text-2xl mb-2">
-                        ⭐⭐⭐⭐⭐
-                    </div>
-                    <p class="text-gray-600">Gemiddelde beoordeling van onze cliënten</p>
-                </div>
-            </div>
-            <h3 class="text-3xl font-bold text-gray-800 mb-4">
-                "90% van onze cliënten beveelt Sigma Zorg aan"
-            </h3>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Dit zijn niet alleen cijfers voor ons - het zijn verhalen van mensen die zich 
-                veilig, gehoord en gewaardeerd voelen. Dat is waar we elke dag voor werken.
-            </p>
         </div>
     </section>
 
@@ -844,12 +959,12 @@
                         WhatsApp is vaak de makkelijkste manier om contact op te nemen. 
                         U kunt ons berichten wanneer het u uitkomt, en wij reageren altijd snel.
                     </p>
-                    <a href="https://wa.me/31686350771?text=Hallo%20Sigma%20Zorg%2C%20ik%20wil%20graag%20informatie%20over%20thuiszorg" 
+                    <a href="https://wa.me/31686350771?text=Hallo%20Sigma%20Zorg%2C%20ik%20wil%20graag%20informatie" 
                        class="whatsapp-btn inline-flex items-center px-8 py-4 rounded-full text-lg font-semibold transition hover:shadow-xl pulse-gentle">
                         <i class="fab fa-whatsapp mr-3 text-2xl"></i>
                         <div>
                             <div>Start WhatsApp gesprek</div>
-                            <div class="text-sm opacity-90">+31 6 86350771</div>
+                            <div class="text-sm opacity-90">06 - 86350771</div>
                         </div>
                     </a>
                 </div>
@@ -862,8 +977,8 @@
                                 <i class="fas fa-phone text-xl"></i>
                             </div>
                             <div>
-                                <div class="font-semibold">Thuiszorg infolijn</div>
-                                <div class="text-gray-300">020 - 334 28 87</div>
+                                <div class="font-semibold">Telefoon</div>
+                                <div class="text-gray-300">06 - 86350771</div>
                             </div>
                         </div>
                         <div class="flex items-center">
@@ -872,7 +987,7 @@
                             </div>
                             <div>
                                 <div class="font-semibold">E-mail</div>
-                                <div class="text-gray-300">info@sigmazorg.nl</div>
+                                <div class="text-gray-300"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="046d6a626b44776d636965297e6b76632a6a68">[email&#160;protected]</a></div>
                             </div>
                         </div>
                         <div class="flex items-center">
@@ -880,8 +995,8 @@
                                 <i class="fas fa-map-marker-alt text-xl"></i>
                             </div>
                             <div>
-                                <div class="font-semibold">Kantoor Amsterdam</div>
-                                <div class="text-gray-300">Den Brielstraat 6<br>1055 RV Amsterdam</div>
+                                <div class="font-semibold">Kantoor Almere</div>
+                                <div class="text-gray-300">Transistorstraat 31<br>1322 CK Almere</div>
                             </div>
                         </div>
                     </div>
@@ -903,11 +1018,21 @@
         <div class="max-w-6xl mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-2xl font-bold text-green-400 mb-4">Sigma Zorg</h3>
+                    <h3 class="text-2xl font-bold text-red-400 mb-4">Sigma Zorg</h3>
                     <p class="text-gray-300">
-                        Professionele thuiszorg en jongerenbegeleiding in Amsterdam en Flevoland. 
-                        Met warmte, respect en vakkundigheid helpen wij u thuis te blijven wonen.
+                        Professionele jongerenbegeleiding en thuiszorg in Amsterdam en Flevoland. 
+                        Met warmte, respect en vakkundigheid.
                     </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Jongerenzorg</h4>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li>Ambulante begeleiding</li>
+                        <li>Schoolbegeleiding</li>
+                        <li>Toekomst & werktrajecten</li>
+                        <li>Gezinsbegeleiding</li>
+                        <li>Digitale begeleiding</li>
+                    </ul>
                 </div>
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Thuiszorg</h4>
@@ -922,27 +1047,16 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Jongerenzorg</h4>
-                    <ul class="space-y-2 text-gray-300 text-sm">
-                        <li>Ambulante begeleiding</li>
-                        <li>Schoolbegeleiding</li>
-                        <li>Toekomst & werktrajecten</li>
-                        <li>Gezinsbegeleiding</li>
-                        <li>Digitale begeleiding</li>
-                    </ul>
-                </div>
-                <div>
                     <h4 class="text-lg font-semibold mb-4">Contact</h4>
                     <div class="space-y-2 text-gray-300 text-sm">
-                        <p><i class="fab fa-whatsapp mr-2"></i> +31 6 86350771</p>
-                        <p><i class="fas fa-phone mr-2"></i> 020 - 334 28 87</p>
-                        <p><i class="fas fa-envelope mr-2"></i> info@sigmazorg.nl</p>
-                        <p><i class="fas fa-map-marker-alt mr-2"></i> Den Brielstraat 6<br><span class="ml-6">1055 RV Amsterdam</span></p>
+                        <p><i class="fab fa-whatsapp mr-2"></i> 06 - 86350771</p>
+                        <p><i class="fas fa-envelope mr-2"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8ae3e4ece5caf9e3ede7eba7f0e5f8eda4e4e6">[email&#160;protected]</a></p>
+                        <p><i class="fas fa-map-marker-alt mr-2"></i> Transistorstraat 31<br><span class="ml-6">1322 CK Almere</span></p>
                     </div>
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2025 Sigma Zorg. Thuiszorg & Jongerenbegeleiding met menselijke warmte in Amsterdam, Flevoland en omgeving.</p>
+                <p>&copy; 2025 Sigma Zorg. Jongerenbegeleiding & Thuiszorg met menselijke warmte in Amsterdam, Flevoland en omgeving.</p>
             </div>
         </div>
     </footer>
@@ -956,7 +1070,7 @@
     </div>
 
     <!-- AOS Animation Script -->
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init({
             duration: 800,
@@ -1019,6 +1133,18 @@
                 
                 card.addEventListener('mouseleave', function() {
                     this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Review cards hover effect
+            const reviewCards = document.querySelectorAll('.review-card');
+            reviewCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
                 });
             });
         });
